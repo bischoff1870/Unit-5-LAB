@@ -1,10 +1,13 @@
 new-item -path C:\fileserver -itemtype directory
 set-location -path c:\fileserver
 $employeelist = import-csv -path c:\employeelist.csv
+Function Listofpeopleconverted {
 foreach ($employeenames in $employeelist.name) {
     $employeenames = $employeenames.Replace(' ','').ToLower()
     new-item $employeenames -itemtype directory 
     new-item $employeenames -name "hello.txt" -itemtype file -value "welcome to the club"
+#nowtherewillbeafiletoreadinafolder
+    }
 }
 $servername = read-host -prompt "Add name for server"
 $confirmation = read-host -prompt "are you sure" 
@@ -15,6 +18,7 @@ while($confirmation -ne "y")
     if ($confirmation -eq 'n') {exit}
     $confirmation = Read-Host "Ready? [y/n]"
 }
+#youwerejustgivenoptionstodothings
 
 $serverfilepath = Get-ChildItem -Path (Read-Host -Prompt 'Get path')
 new-item -ItemType directory -path C:\fileserver\$servername 
@@ -22,6 +26,7 @@ new-item -ItemType directory -path C:\fileserver\$servername
 
 $num = 5,50,50,3,1
 
+Function VariableNumberFunction {
 foreach ($extravariable in $num){
 $hostinput = read-host -prompt "choose a number to multiply by"
    $product = $extravariable*$hostinput
@@ -29,10 +34,13 @@ $hostinput = read-host -prompt "choose a number to multiply by"
     
    
    }
-
+}
+#nowyoudidmorestuffwithcmdlets
 
 $serverpingname = import-csv -path C:\serverlist.csv 
 
+Function connectiontest {
   foreach ($objects in $serverpingname){ 
   test-connection $objects.servers 
   }  
+}
