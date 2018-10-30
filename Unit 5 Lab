@@ -44,3 +44,14 @@ Function connectiontest {
   test-connection $objects.servers 
   }  
 }
+#thisisdoingsomethingwithyourprinterstoshowyoustuffaboutthem
+Function storingprinterdetailsinfolders {
+$printerlist = get-printer 
+set-location -path C:\users
+ foreach ($printername in $printerlist.name) {
+	new-item $printername -itemtype directory
+	$printerdetails = Get-Printer -Name "$printername" | Format-List 
+	$printerdetails | out-file -filepath c:\users\$printername\$printername.json
+	
+	}
+    }
